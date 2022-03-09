@@ -1,0 +1,41 @@
+.header{
+    text-align: center;
+    border:solid;
+    padding:20px;
+    border-width:0 20px;
+    border-color: #b308b3;
+    background:linear-gradient(#FFDDEE  ,#FFBDE6); 
+    font-family: 'Montserrat', sans-serif;
+    font-size:1em;
+    margin-left:0px;
+}
+body{
+    background: linear-gradient(#EFFFFD, #e095d6,  #0fb1c0);
+    background-attachment: fixed;
+}
+hr{
+    border-style:solid;
+    margin: 2em;
+    background-color: #11ca11 ;
+   }    
+.ct{
+    font-family: 'Lobster', cursive;
+    list-style-type: none;
+    font-size: 1.2em;
+    line-height: 2;
+    padding:1em;   
+}
+.contact{
+    background:linear-gradient(#16d8c1, #0780a5); 
+    font-family: 'Times New Roman', Times, serif;
+    position:relative;
+    bottom:0;
+    margin-left:0px;
+    margin-top:10em;
+    text-align: center;
+}
+.mail{
+    border:solid;
+    color:rgb(65, 43, 9);
+    background-color:#107aac;
+}
