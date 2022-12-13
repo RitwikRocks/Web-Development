@@ -1,0 +1,192 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct dll{
+  int data;
+  struct dll *prev;
+  struct dll *next;
+};
+struct dll *start=NULL;
+void traverse()
+{
+    struct dll *ptr=(struct dll *)malloc(sizeof(struct dll));
+    ptr=start;
+    printf("\n The Current list is : \n");
+    while(ptr!=NULL)
+    {
+
+        printf("%d ",ptr->data);
+        ptr=ptr->next;
+    }
+    printf("\n");
+}
+void insertfirst()
+{
+    struct dll *ptr=(struct dll *)malloc(sizeof(struct dll));
+    printf("\n Enter data to be inserted : ");
+    int da=0;
+    scanf("%d",&da);
+    if(start==NULL)
+    {
+        ptr->data=da;
+        ptr->next=NULL;
+        ptr->prev=NULL;
+        start=ptr;
+    }
+    else
+    {
+        ptr->data=da;
+        ptr->next=start;
+        ptr->prev=NULL;
+        start->prev=ptr;
+        start=ptr;
+    }
+}
+void insertlast()
+{
+    struct dll *ptr=(struct dll *)malloc(sizeof(struct dll));
+      struct dll *p=(struct dll *)malloc(sizeof(struct dll));
+    printf("\n Enter data to be inserted : ");
+    int da=0;
+    scanf("%d",&da);
+    if(start==NULL)
+    {
+        ptr->data=da;
+        ptr->next=NULL;
+        ptr->prev=NULL;
+        start=ptr;
+    }
+    else
+    {
+        p=start;
+        while(p->next!=NULL)
+            p=p->next;
+        ptr->data=da;
+        p->next=ptr;
+        ptr->prev=p;
+        ptr->next=NULL;
+    }
+}
+void insertindex()
+{
+     struct dll *ptr=(struct dll *)malloc(sizeof(struct dll));
+      struct dll *p=(struct dll *)malloc(sizeof(struct dll));
+    printf("\n Enter data and index to be inserted : ");
+    int da=0,index=0;
+    scanf("%d%d",&da,&index);
+    int i=0;
+    p=start;
+    while(i<index-1)
+      {
+          p=p->next;
+         i=i+1;
+      }
+      ptr->data=da;
+      ptr->next=p->next;
+      (p->next)->prev=ptr;
+      ptr->prev=p;
+      p->next=ptr;
+
+
+
+}
+void deletefirst()
+{
+    if(start==NULL)
+        printf("\n No elements present.\n ");
+    else{
+
+         struct dll *ptr=(struct dll *)malloc(sizeof(struct dll));
+         ptr=start;
+
+         start=start->next;
+         if(start!=NULL)
+         {start->prev=NULL;
+         printf("\n The deleted element is : %d \n",ptr->data);
+         }
+         free(ptr);
+    }
+}
+void deletelast()
+{
+    if(start==NULL)
+        printf("\n No elements present.\n ");
+    else{
+
+         struct dll *ptr=(struct dll *)malloc(sizeof(struct dll));
+         struct dll *p=(struct dll *)malloc(sizeof(struct dll));
+         ptr=start;
+         while(ptr->next!=NULL)
+            ptr=ptr->next;
+            if(start->next==NULL)
+                start=NULL;
+            else{
+            p=ptr->prev;
+         p->next=NULL;
+            }
+         printf("\n The deleted element is : %d \n",ptr->data);
+         free(ptr);
+    }
+}
+void deleteindex()
+{
+    if(start==NULL)
+        printf("\n No elements present.\n ");
+    else{
+
+    struct dll *ptr=(struct dll *)malloc(sizeof(struct dll));
+    struct dll *p=(struct dll *)malloc(sizeof(struct dll));
+    printf("\n Enter  index to be deleted : ");
+    int index=0;
+    scanf("%d",&index);
+    int i=0;
+    p=start;
+    while(i<index-1)
+      {
+          p=p->next;
+         i=i+1;
+      }
+    ptr=p->next;
+    p->next=ptr->next;
+    ptr->next->prev=p;
+      printf("\n The deleted element is : %d \n",ptr->data);
+         free(ptr);
+    }
+}
+int main()
+{
+  printf("\n Doubly Linked List \n");
+  int choice;
+  do{
+    printf("\t MENU \n");
+    printf("1.Insertion at the beginning \n");
+    printf("2.Insertion at the end \n");
+    printf("3.Insertion at the index \n");
+    printf("4.Deletion from the beginning\n");
+    printf("5.Deletion from the end\n");
+    printf("6.Deletion from the index\n");
+    printf("7.Traverse across the list");
+    printf("\n Enter your Choice : ");
+    scanf("%d",&choice);
+    switch(choice)
+    {
+        case 1:insertfirst();
+               break;
+        case 2:insertlast();
+               break;
+        case 3:insertindex();
+               break;
+        case 4:deletefirst();
+                break;
+        case 5:deletelast();
+               break;
+        case 6:deleteindex();
+               break;
+        case 7:traverse();
+               break;
+        default:printf("\n Wrong choice entered\n");
+    }
+
+  }
+  while(choice>=1&&choice<=7);
+  return 0;
+}
